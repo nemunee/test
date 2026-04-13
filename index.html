@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gobi Nature Camp</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+header {
+  position: absolute;
+  width: 100%;
+  color: white;
+  text-align: center;
+  z-index: 3;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 100vh;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  color: white;
+  z-index: 2;
+}
+
+.hero-text h1 {
+  font-size: 50px;
+  margin: 0;
+}
+
+.hero-text h2 {
+  font-size: 40px;
+  color: #ff4d4d;
+}
+
+/* BUTTON CARDS */
+.menu {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  z-index: 2;
+}
+
+.card {
+  background: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background: white;
+  margin: 5% auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 10px;
+}
+
+.close {
+  float: right;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #2c6e49;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+iframe {
+  width: 100%;
+  height: 300px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <h1>Gobi Nature Camp</h1>
+  <p>Цагаан суварга • Дундговь</p>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="images/gobi.jpg">
+
+  <div class="hero-text">
+    <h1>ЦАХИМ</h1>
+    <h2>ХУУДСЫН</h2>
+    <h1>ЦОГЦ ШИЙДЭЛ</h1>
+  </div>
+
+  <!-- MENU -->
+  <div class="menu">
+    <div class="card" onclick="openModal('about')">ℹ️ Тухай</div>
+    <div class="card" onclick="openModal('ger')">🏕️ Гэр</div>
+    <div class="card" onclick="openModal('food')">🍽️ Хоол</div>
+    <div class="card" onclick="openModal('booking')">📝 Захиалга</div>
+    <div class="card" onclick="openModal('map')">📍 Байршил</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('about')">&times;</span>
+    <h2>ℹ️ Бидний тухай</h2>
+    <p>Цагаан суварга орчимд байрлах аялал жуулчлалын бааз.</p>
+  </div>
+</div>
+
+<!-- GER -->
+<div id="ger" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('ger')">&times;</span>
+    <h2>🏕️ Гэрүүд</h2>
+    <img src="images/ger1.jpg" width="100%">
+  </div>
+</div>
+
+<!-- FOOD -->
+<div id="food" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('food')">&times;</span>
+    <h2>🍽️ Хоол</h2>
+    <img src="images/food.jpg" width="100%">
+  </div>
+</div>
+
+<!-- BOOKING -->
+<div id="booking" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('booking')">&times;</span>
+    <h2>📝 Захиалга</h2>
+
+    <input id="name" placeholder="Нэр">
+    <input id="phone" placeholder="Утас">
+    <input id="people" type="number" placeholder="Хүний тоо">
+
+    <button onclick="book()">Захиалах</button>
+  </div>
+</div>
+
+<!-- MAP -->
+<div id="map" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('map')">&times;</span>
+    <h2>📍 Байршил</h2>
+    <iframe src="https://maps.google.com/maps?q=Tsagaan%20Suvarga&z=13&output=embed"></iframe>
+  </div>
+</div>
+
+<script>
+function openModal(id){
+  document.getElementById(id).style.display = "block";
+}
+
+function closeModal(id){
+  document.getElementById(id).style.display = "none";
+}
+
+function book(){
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+
+  if(!name || !phone){
+    alert("Мэдээллээ бөглөнө үү!");
+    return;
+  }
+
+  alert("Захиалга амжилттай!");
+}
+</script>
+
+</body>
+</html>
